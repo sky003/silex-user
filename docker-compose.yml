@@ -1,0 +1,36 @@
+version: '3.2'
+services:
+  auth:
+    build:
+      context: ./env/${SERVICE_ENV}/docker/nginx
+    image: auth/nginx:v1
+    ports:
+    - '8080:80'
+    env_file:
+    - ./env/${SERVICE_ENV}/docker/nginx/env
+    volumes:
+    - ./:/usr/share/nginx/service
+    depends_on:
+    - php-fpm
+  php-fpm:
+    build:
+      context: ./env/${SERVICE_ENV}/docker/php-fpm
+    image: auth/php-fpm:v1
+    env_file:
+    - ./env/${SERVICE_ENV}/docker/php-fpm/env
+    - ./env/${SERVICE_ENV}/docker/nginx/env
+    - ./env/${SERVICE_ENV}/docker/postgres/env
+    - ./env/${SERVICE_ENV}/docker/redis/env
+    volumes:
+    - ./:/usr/share/nginx/service
+    depends_on:
+    - postgres
+    - redis
+  postgres:
+    image: postgres:9.6
+    env_file:
+    - ./env/${SERVICE_ENV}/docker/postgres/env
+  redis:
+    image: redis:3.2
+    env_file:
+    - ./env/${SERVICE_ENV}/docker/redis/env

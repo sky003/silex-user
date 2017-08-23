@@ -1,0 +1,2 @@
+NGINX_ROOT=/usr/share/nginx/service/web
+NGINX_FASTCGI_PASS=php-fpm:9000

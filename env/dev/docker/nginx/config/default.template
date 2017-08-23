@@ -1,0 +1,27 @@
+server {
+    charset utf-8;
+
+    listen  ${NGINX_PORT};
+
+    root ${NGINX_ROOT};
+    index index.php;
+
+    access_log  ${NGINX_ACCESS_LOG};
+    error_log   ${NGINX_ERROR_LOG};
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location /index-test.php/ {
+        try_files $uri $uri/ /index-test.php?$query_string;
+    }
+
+    location ~ \.php$ {
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        fastcgi_pass ${NGINX_FASTCGI_PASS};
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+}

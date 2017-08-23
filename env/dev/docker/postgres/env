@@ -1,0 +1,8 @@
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+
+POSTGRES_PASSWORD=mysecretpassword
+POSTGRES_USER=postgres
+
+POSTGRES_DB=postgres
+POSTGRES_TEST_DB=postgres-test
