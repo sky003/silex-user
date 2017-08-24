@@ -71,7 +71,7 @@ class Application extends SilexApplication
      *
      * @return string
      */
-    public static function getName()
+    public static function getName(): string
     {
         return 'Auth';
     }
@@ -81,7 +81,7 @@ class Application extends SilexApplication
      *
      * @return string
      */
-    public static function getVersion()
+    public static function getVersion(): string
     {
         return '0.0.1';
     }
