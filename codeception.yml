@@ -1,0 +1,21 @@
+namespace: Auth\Tests
+params:
+- env
+paths:
+  tests: tests
+  output: tests/_output
+  data: tests/_data
+  support: tests/_support
+  envs: tests/_envs
+actor_suffix: Tester
+extensions:
+  enabled:
+  - Codeception\Extension\RunFailed
+coverage:
+  enabled: true
+  c3_url: 'http://%SERVICE_HOST%/index-test.php'
+  include:
+  - src/*
+settings:
+  colors: true
+  strict_xml: true
