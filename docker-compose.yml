@@ -21,11 +21,13 @@ services:
     - ./env/${SERVICE_ENV}/docker/nginx/env
     - ./env/${SERVICE_ENV}/docker/postgres/env
     - ./env/${SERVICE_ENV}/docker/redis/env
+    - ./env/${SERVICE_ENV}/docker/graylog/env
     volumes:
     - ./:/usr/share/nginx/service
     depends_on:
     - postgres
     - redis
+    - graylog
   postgres:
     image: postgres:9.6
     env_file:
@@ -34,3 +36,17 @@ services:
     image: redis:3.2
     env_file:
     - ./env/${SERVICE_ENV}/docker/redis/env
+  graylog:
+    image: graylog/graylog:2.3
+    ports:
+    - '9000:9000'
+    env_file:
+    - ./env/${SERVICE_ENV}/docker/graylog/env
+    depends_on:
+    - mongo
+    - elasticsearch
+  mongo:
+    image: mongo:3
+  elasticsearch:
+    image: elasticsearch:2
+    command: 'elasticsearch -Des.cluster.name="graylog"'
