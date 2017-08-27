@@ -48,5 +48,6 @@ services:
   mongo:
     image: mongo:3
   elasticsearch:
-    image: elasticsearch:2
-    command: 'elasticsearch -Des.cluster.name="graylog"'
+    image: elasticsearch:5
+    env_file:
+    - ./env/${SERVICE_ENV}/docker/elasticsearch/env
