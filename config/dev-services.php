@@ -9,6 +9,7 @@ use Gelf\Publisher;
 use Gelf\Transport\UdpTransport;
 use Monolog\Formatter\GelfMessageFormatter;
 use Monolog\Handler\GelfHandler;
+use Silex\Provider\DoctrineServiceProvider;
 use Silex\Provider\MonologServiceProvider;
 
 require 'dev.php';
@@ -33,3 +34,7 @@ $app->extend('monolog', function (Monolog\Logger $logger) use ($app) {
 
     return $logger;
 });
+
+$app->register(new DoctrineServiceProvider(), [
+    'db.options' => $app['db.postgres_options'],
+]);
