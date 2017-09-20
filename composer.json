@@ -1,7 +1,7 @@
 {
     "name": "sky003/silex-auth-service",
     "type": "project",
-    "description": "Authentication microservice built with Silex",
+    "description": "Authentication service built with Silex",
     "require": {
         "silex/silex": "^2.2",
 
@@ -20,6 +20,7 @@
         "codeception/codeception": "^2.3",
         "codeception/c3": "^2.0",
 
+        "doctrine/orm": "^2.5",
         "doctrine/data-fixtures": "^1.2",
         "nelmio/alice": "^3.0@RC",
 
