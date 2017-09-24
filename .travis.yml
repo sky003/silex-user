@@ -14,7 +14,6 @@ env:
     - REDIS_PORT=6379
     - REDIS_TEST_DB=0
 php:
-  - '7.0'
   - '7.1'
 services:
   - postgres
@@ -23,6 +22,9 @@ before_script:
   - composer self-update
   - composer install --no-interaction --prefer-source --dev
   - composer run-script --dev init-database
-  - php -S localhost:8080 -t web web/index-test.php
+  - nohup php -S localhost:8080 -t web web/index-test.php 1>/dev/null 2>&1 &
+  - PHP_SERVER_PID=$!
 script:
   - vendor/bin/codecept run
+after_script:
+  - kill -3 $PHP_SERVER_PID
