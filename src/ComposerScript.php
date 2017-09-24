@@ -28,10 +28,12 @@ class ComposerScript
 
         require_once $vendorDir.'/autoload.php';
 
-        $devConfig = self::getConfig($rootDir.'/config/dev.php');
-        $testConfig = self::getConfig($rootDir.'/config/test.php');
+        $configs[] = self::getConfig($rootDir.'/config/dev.php');
+        if ($event->isDevMode()) {
+            $configs[] = self::getConfig($rootDir.'/config/test.php');
+        }
 
-        foreach ([$devConfig, $testConfig] as $config) {
+        foreach ($configs as $config) {
             $connection = self::createConnection(
                 $config['db.postgres_options']['driver'],
                 $config['db.postgres_options']['host'],
