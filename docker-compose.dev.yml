@@ -1,0 +1,25 @@
+version: '3.2'
+services:
+  php-fpm:
+    env_file:
+    - ./env/docker/graylog/env
+    depends_on:
+    - graylog
+  graylog:
+    image: graylog/graylog:2.3
+    container_name: auth-graylog
+    ports:
+    - '9000:9000'
+    env_file:
+    - ./env/docker/graylog/env
+    depends_on:
+    - mongo
+    - elasticsearch
+  mongo:
+    image: mongo:3
+    container_name: auth-mongo
+  elasticsearch:
+    image: elasticsearch:5
+    container_name: auth-elasticsearch
+    env_file:
+    - ./env/docker/elasticsearch/env

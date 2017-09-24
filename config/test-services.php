@@ -17,22 +17,6 @@ require 'test.php';
 $app->register(new MonologServiceProvider(), [
     'monolog.use_error_handler' => false,
 ]);
-$app->extend('monolog', function (Monolog\Logger $logger) use ($app) {
-    $handler = new GelfHandler(
-        new Publisher(
-            new UdpTransport(
-                $app['graylog.options']['host'],
-                $app['graylog.options']['port'],
-                UdpTransport::CHUNK_SIZE_LAN
-            )
-        )
-    );
-    $handler->setFormatter(new GelfMessageFormatter());
-
-    $logger->pushHandler($handler);
-
-    return $logger;
-});
 
 $app->register(new DoctrineServiceProvider(), [
     'db.options' => $app['db.postgres_options'],

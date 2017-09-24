@@ -2,54 +2,41 @@ version: '3.2'
 services:
   auth:
     build:
-      context: ./env/${SERVICE_ENV}/docker/nginx
+      context: ./env/docker/nginx
     image: auth/nginx:v1
+    container_name: auth-nginx
     ports:
     - '8080:80'
     env_file:
-    - ./env/${SERVICE_ENV}/docker/nginx/env
+    - ./env/docker/nginx/env
     volumes:
     - ./:/usr/share/nginx/service
     depends_on:
     - php-fpm
   php-fpm:
     build:
-      context: ./env/${SERVICE_ENV}/docker/php-fpm
+      context: ./env/docker/php-fpm
     image: auth/php-fpm:v1
+    container_name: auth-php-fpm
     env_file:
-    - ./env/${SERVICE_ENV}/docker/php-fpm/env
-    - ./env/${SERVICE_ENV}/docker/nginx/env
-    - ./env/${SERVICE_ENV}/docker/postgres/env
-    - ./env/${SERVICE_ENV}/docker/redis/env
-    - ./env/${SERVICE_ENV}/docker/graylog/env
+    - ./env/docker/php-fpm/env
+    - ./env/docker/nginx/env
+    - ./env/docker/postgres/env
+    - ./env/docker/redis/env
     volumes:
     - ./:/usr/share/nginx/service
     depends_on:
     - postgres
     - redis
-    - graylog
   postgres:
     image: postgres:9.6
+    container_name: auth-postgres
     ports:
     - '5432:5432'
     env_file:
-    - ./env/${SERVICE_ENV}/docker/postgres/env
+    - ./env/docker/postgres/env
   redis:
     image: redis:3.2
+    container_name: auth-redis
     env_file:
-    - ./env/${SERVICE_ENV}/docker/redis/env
-  graylog:
-    image: graylog/graylog:2.3
-    ports:
-    - '9000:9000'
-    env_file:
-    - ./env/${SERVICE_ENV}/docker/graylog/env
-    depends_on:
-    - mongo
-    - elasticsearch
-  mongo:
-    image: mongo:3
-  elasticsearch:
-    image: elasticsearch:5
-    env_file:
-    - ./env/${SERVICE_ENV}/docker/elasticsearch/env
+    - ./env/docker/redis/env
