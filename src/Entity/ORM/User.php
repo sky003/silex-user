@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @author Anton Pelykh <anton.pelykh.dev@gmail.com>
  *
  * @ORM\Entity()
- * @ORM\Table(name="user")
+ * @ORM\Table(name="user", schema="public")
  */
 class User
 {
@@ -46,6 +46,13 @@ class User
      * @ORM\Column(type="datetime", name="updated_at", nullable=true)
      */
     private $updatedAt;
+
+    /**
+     * @var Account
+     *
+     * @ORM\OneToOne(targetEntity="Account", mappedBy="user")
+     */
+    private $account;
 
     /**
      * @return int
@@ -123,6 +130,26 @@ class User
     public function setUpdatedAt(\DateTime $updatedAt): User
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Account
+     */
+    public function getAccount(): Account
+    {
+        return $this->account;
+    }
+
+    /**
+     * @param Account $account
+     *
+     * @return self
+     */
+    public function setAccount(Account $account): User
+    {
+        $this->account = $account;
 
         return $this;
     }

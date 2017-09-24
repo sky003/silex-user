@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @author Anton Pelykh <anton.pelykh.dev@gmail.com>
  *
  * @ORM\Entity()
- * @ORM\Table(name="token")
+ * @ORM\Table(name="token", schema="public")
  */
 class Token
 {
@@ -32,7 +32,7 @@ class Token
     /**
      * @var integer
      *
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", name="user_id")
      */
     private $userId;
     /**

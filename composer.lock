@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "b2f964e29f40db77702ff17374965149",
+    "content-hash": "02c31dc5135e4c24d8476fe11f645390",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -3121,79 +3121,6 @@
             "time": "2017-04-12T18:52:22+00:00"
         },
         {
-            "name": "nelmio/alice",
-            "version": "v3.0.0-RC.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nelmio/alice.git",
-                "reference": "8c7cc34a11888c7c96096164665b53b615e50cce"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nelmio/alice/zipball/8c7cc34a11888c7c96096164665b53b615e50cce",
-                "reference": "8c7cc34a11888c7c96096164665b53b615e50cce",
-                "shasum": ""
-            },
-            "require": {
-                "fzaninotto/faker": "^1.6",
-                "myclabs/deep-copy": "^1.5.2",
-                "php": "^7.0",
-                "symfony/property-access": "^2.7.11||^3.0",
-                "symfony/yaml": "^2.7||^3.0"
-            },
-            "require-dev": {
-                "bamarni/composer-bin-plugin": "^1.1.0",
-                "php-mock/php-mock": "^1.0",
-                "phpspec/prophecy": "^1.6",
-                "phpunit/phpunit": "^5.6",
-                "symfony/phpunit-bridge": "^3.1",
-                "symfony/var-dumper": "^3.2"
-            },
-            "type": "library",
-            "extra": {
-                "bamarni-bin": {
-                    "bin-links": false
-                },
-                "branch-alias": {
-                    "dev-master": "3.0.x-dev"
-                }
-            },
-            "autoload": {
-                "files": [
-                    "src/deep_clone.php"
-                ],
-                "psr-4": {
-                    "Nelmio\\Alice\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jordi Boggiano",
-                    "email": "j.boggiano@seld.be"
-                },
-                {
-                    "name": "Tim Shelburne",
-                    "email": "shelburt02@gmail.com"
-                },
-                {
-                    "name": "Théo FIDRY",
-                    "email": "theo.fidry@gmail.com"
-                }
-            ],
-            "description": "Expressive fixtures generator",
-            "keywords": [
-                "Fixture",
-                "data",
-                "faker",
-                "test"
-            ],
-            "time": "2017-06-28T23:22:17+00:00"
-        },
-        {
             "name": "phar-io/manifest",
             "version": "1.0.1",
             "source": {
@@ -4986,9 +4913,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "nelmio/alice": 5
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],

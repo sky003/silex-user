@@ -4,6 +4,7 @@
  */
 
 use Auth\Application;
+use Doctrine\Common\Annotations\AnnotationRegistry;
 
 // Check if the browser tests running.
 if (isset($_SERVER['REQUEST_URI'])) {
@@ -12,6 +13,8 @@ if (isset($_SERVER['REQUEST_URI'])) {
 }
 
 require_once __DIR__.'/../vendor/autoload.php';
+
+AnnotationRegistry::registerLoader('class_exists');
 
 defined('SERVICE_ENV') or define('SERVICE_ENV', Application::ENV_TEST);
 

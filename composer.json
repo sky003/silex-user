@@ -22,7 +22,7 @@
 
         "doctrine/orm": "^2.5",
         "doctrine/data-fixtures": "^1.2",
-        "nelmio/alice": "^3.0@RC",
+        "fzaninotto/faker": "^1.7",
 
         "escapestudios/symfony2-coding-standard": "^2.11"
     },

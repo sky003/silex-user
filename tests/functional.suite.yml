@@ -12,6 +12,7 @@ modules:
   - REST
   - Db
   - \Auth\Tests\Helper\Functional
+  - \Auth\Tests\Helper\Fixture
   config:
     Silex:
       app: web/index-test.php
@@ -24,3 +25,7 @@ modules:
       password: '%POSTGRES_PASSWORD%'
       populate: false
       cleanup: false
+    \Auth\Tests\Helper\Fixture:
+      depends: Db
+      entity_paths:
+      - src/Entity/ORM
