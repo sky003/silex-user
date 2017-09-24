@@ -1,0 +1,27 @@
+language: php
+sudo: false
+php:
+  - '7.0'
+  - '7.1'
+env:
+  global:
+    - SERVICE_ENV=test
+    - SERVICE_HOST=localhost:8080
+    - POSTGRES_HOST=localhost
+    - POSTGRES_PORT=5432
+    - POSTGRES_TEST_DB=postgres-test
+    - POSTGRES_USER=postgres
+    - POSTGRES_PASSWORD=mysecretpassword
+    - REDIS_HOST=localhost
+    - REDIS_PORT=6379
+    - REDIS_TEST_DB=0
+services:
+  - postgres
+  - redis-server
+before_script:
+  - composer self-update
+  - composer install --no-interaction --prefer-source --dev
+  - composer run-script init-database
+  - php -S localhost:8080 -t web web/index-test.php
+script:
+  - vendor/bin/codecept run
