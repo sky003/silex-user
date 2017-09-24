@@ -31,6 +31,9 @@
             "Auth\\": "src/"
         }
     },
+    "scripts": {
+        "init-database": "Auth\\ComposerScript::initDatabase"
+    },
     "minimum-stability": "dev",
     "prefer-stable": true
 }
