@@ -9,6 +9,8 @@ $app['debug'] = true;
 $app['cache.dir'] = dirname(__DIR__).'/var/cache';
 $app['logger.dir'] = dirname(__DIR__).'/var/log';
 
+$app['security.encoder.bcrypt.cost'] = 4;
+
 $app['graylog.options'] = [
     'host' => getenv('GRAYLOG_HOST'),
     'port' => getenv('GRAYLOG_PORT'),

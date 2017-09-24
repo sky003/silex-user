@@ -4,3 +4,7 @@
  *
  * @var \Auth\Application $app
  */
+
+$app->get('/', function () {
+    return '';
+});

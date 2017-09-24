@@ -18,7 +18,6 @@ $app->register(new MonologServiceProvider(), [
     'monolog.use_error_handler' => false,
 ]);
 $app->extend('monolog', function (Monolog\Logger $logger) use ($app) {
-    // TODO: Wrap this into service provider.
     $handler = new GelfHandler(
         new Publisher(
             new UdpTransport(
