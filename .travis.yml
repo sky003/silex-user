@@ -20,7 +20,7 @@ services:
   - redis-server
 before_script:
   - composer self-update
-  - composer update --no-interaction --prefer-source
+  - composer install --no-interaction --prefer-source
   - composer run-script --dev init-database
   - vendor/bin/doctrine-migrations migrations:migrate --db-configuration=config/test-migrations.php --no-interaction
   - nohup php -S localhost:8080 -t web web/index-test.php 1>/dev/null 2>&1 &
