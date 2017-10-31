@@ -1,6 +1,6 @@
 # Silex user service
 
-[![Build Status](https://travis-ci.org/sky003/silex-auth-service.svg?branch=master)](https://travis-ci.org/sky003/silex-auth-service)
+[![Build Status](https://travis-ci.org/sky003/silex-user.svg?branch=master)](https://travis-ci.org/sky003/silex-user)
 
 Example of REST service built with Silex.
 
