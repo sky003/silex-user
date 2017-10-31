@@ -1,6 +1,6 @@
 <?php
 
-namespace Auth\Migrations;
+namespace User\Migrations;
 
 use Doctrine\DBAL\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
@@ -9,7 +9,7 @@ use Doctrine\DBAL\Types\Type;
 /**
  * Migration for `token` table.
  *
- * @package Auth\Migrations
+ * @package User\Migrations
  * @author  Anton Pelykh <anton.pelykh.dev@gmail.com>
  */
 class Version20170827125642 extends AbstractMigration

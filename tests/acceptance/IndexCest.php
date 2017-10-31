@@ -1,9 +1,9 @@
 <?php
 // @codingStandardsIgnoreFile
 
-namespace Auth\Tests\Acceptance;
+namespace User\Tests\Acceptance;
 
-use Auth\Tests\AcceptanceTester;
+use User\Tests\AcceptanceTester;
 
 class IndexCest
 {

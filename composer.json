@@ -1,12 +1,11 @@
 {
-    "name": "sky003/silex-auth-service",
+    "name": "sky003/silex-user-service",
     "type": "project",
-    "description": "Authentication service built with Silex",
+    "description": "User service built with Silex",
     "require": {
         "silex/silex": "^2.2",
 
         "monolog/monolog": "^1.23",
-        "graylog2/gelf-php": "^1.5",
 
         "doctrine/dbal": "^2.6",
         "doctrine/migrations": "^1.5",
@@ -20,6 +19,8 @@
         "codeception/codeception": "^2.3",
         "codeception/c3": "^2.0",
 
+        "graylog2/gelf-php": "^1.5",
+
         "doctrine/orm": "^2.5",
         "doctrine/data-fixtures": "^1.2",
         "fzaninotto/faker": "^1.7",
@@ -32,7 +33,7 @@
         }
     },
     "scripts": {
-        "init-database": "Auth\\ComposerScript::initDatabase"
+        "init-database": "User\\ComposerScript::initDatabase"
     },
     "minimum-stability": "dev",
     "prefer-stable": true

@@ -2,7 +2,7 @@
 /**
  * Test services registration and configuration.
  *
- * @var \Auth\Application $app
+ * @var \User\Application $app
  */
 
 use Gelf\Publisher;

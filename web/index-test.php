@@ -3,7 +3,7 @@
  * The service bootstrap file used for test purposes.
  */
 
-use Auth\Application;
+use User\Application;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 
 // Check if the browser tests running.

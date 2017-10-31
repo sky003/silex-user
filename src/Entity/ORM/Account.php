@@ -2,14 +2,14 @@
 
 declare(strict_types = 1);
 
-namespace Auth\Entity\ORM;
+namespace User\Entity\ORM;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class to represent the account entity.
  *
- * @package Auth\Entity\ORM
+ * @package User\Entity\ORM
  * @author Anton Pelykh <anton.pelykh.dev@gmail.com>
  *
  * @ORM\Entity()

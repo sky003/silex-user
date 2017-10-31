@@ -1,10 +1,10 @@
 <?php
 
-namespace Auth\DataFixtures\ORM;
+namespace User\DataFixtures\ORM;
 
-use Auth\Component\Doctrine\Common\DataFixtures\AbstractFixture;
-use Auth\Component\Doctrine\Common\DataFixtures\ContainerAwareInterface;
-use Auth\Entity\ORM\Account;
+use User\Component\Doctrine\Common\DataFixtures\AbstractFixture;
+use User\Component\Doctrine\Common\DataFixtures\ContainerAwareInterface;
+use User\Entity\ORM\Account;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory;
@@ -14,7 +14,7 @@ use Symfony\Component\Security\Core\User\User;
 /**
  * Loads the account fixtures.
  *
- * @package Auth\DataFixtures\ORM
+ * @package User\DataFixtures\ORM
  * @author  Anton Pelykh <anton.pelykh.dev@gmail.com>
  */
 class AccountFixtureLoader extends AbstractFixture implements DependentFixtureInterface, ContainerAwareInterface

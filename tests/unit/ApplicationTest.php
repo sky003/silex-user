@@ -1,10 +1,10 @@
 <?php
 // @codingStandardsIgnoreFile
 
-namespace Auth\Tests\Unit;
+namespace User\Tests\Unit;
 
-use Auth\Application;
-use Auth\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
+use User\Application;
+use User\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 use Codeception\Test\Unit;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\ConstraintViolationList;

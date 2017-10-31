@@ -1,4 +1,4 @@
-name: Auth Service Migrations
-migrations_namespace: Auth\Migrations
+name: User Service Migrations
+migrations_namespace: User\Migrations
 table_name: doctrine_migration_version
 migrations_directory: src/Migrations

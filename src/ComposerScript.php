@@ -1,6 +1,6 @@
 <?php
 
-namespace Auth;
+namespace User;
 
 use Composer\Script\Event;
 use Doctrine\DBAL\Connection;
@@ -9,7 +9,7 @@ use Doctrine\DBAL\DriverManager;
 /**
  * Composer scripts.
  *
- * @package Auth
+ * @package User
  * @author Anton Pelykh <anton.pelykh.dev@gmail.com>
  */
 class ComposerScript

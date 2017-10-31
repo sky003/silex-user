@@ -2,7 +2,7 @@
 /**
  * Common services registration and configuration.
  *
- * @var \Auth\Application $app
+ * @var \User\Application $app
  */
 
 use Silex\Provider\SecurityServiceProvider;

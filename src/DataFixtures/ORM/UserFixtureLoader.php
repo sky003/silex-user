@@ -1,16 +1,16 @@
 <?php
 
-namespace Auth\DataFixtures\ORM;
+namespace User\DataFixtures\ORM;
 
-use Auth\Component\Doctrine\Common\DataFixtures\AbstractFixture;
-use Auth\Entity\ORM\User;
+use User\Component\Doctrine\Common\DataFixtures\AbstractFixture;
+use User\Entity\ORM\User;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory;
 
 /**
  * Class UserFixtureLoader.
  *
- * @package Auth\DataFixtures\ORM
+ * @package User\DataFixtures\ORM
  * @author  Anton Pelykh <anton.pelykh.dev@gmail.com>
  */
 class UserFixtureLoader extends AbstractFixture

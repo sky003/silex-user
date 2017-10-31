@@ -1,5 +1,5 @@
 <?php
-namespace Auth\Tests;
+namespace User\Tests;
 
 /**
  * Inherited Methods

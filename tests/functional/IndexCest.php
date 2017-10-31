@@ -3,7 +3,7 @@
 
 namespace Anth\Tests\Functional;
 
-use Auth\Tests\FunctionalTester;
+use User\Tests\FunctionalTester;
 
 class IndexCest
 {

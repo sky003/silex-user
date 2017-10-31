@@ -2,7 +2,7 @@
 /**
  * The service routes mapping.
  *
- * @var \Auth\Application $app
+ * @var \User\Application $app
  */
 
 $app->get('/', function () {

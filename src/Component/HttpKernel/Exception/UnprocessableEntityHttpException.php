@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Auth\Component\HttpKernel\Exception;
+namespace User\Component\HttpKernel\Exception;
 
 use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException as BaseUnprocessableEntityHttpException;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
@@ -10,7 +10,7 @@ use Symfony\Component\Validator\ConstraintViolationListInterface;
 /**
  * UnprocessableEntityHttpException.
  *
- * @package Auth\Component\HttpKernel\Exception
+ * @package User\Component\HttpKernel\Exception
  * @author  Anton Pelykh <anton.pelykh.dev@gmail.com>
  */
 class UnprocessableEntityHttpException extends BaseUnprocessableEntityHttpException

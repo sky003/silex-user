@@ -2,5 +2,5 @@
 /**
  * Common configuration values.
  *
- * @var \Auth\Application $app
+ * @var \User\Application $app
  */

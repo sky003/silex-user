@@ -3,8 +3,8 @@
 
 namespace Anth\Tests\Functional;
 
-use Auth\DataFixtures\ORM\AccountFixtureLoader;
-use Auth\Tests\FunctionalTester;
+use User\DataFixtures\ORM\AccountFixtureLoader;
+use User\Tests\FunctionalTester;
 
 class FixtureLoaderCest
 {

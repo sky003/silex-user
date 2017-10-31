@@ -1,10 +1,10 @@
 <?php
 
-declare( strict_types = 1);
+declare(strict_types = 1);
 
-namespace Auth;
+namespace User;
 
-use Auth\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
+use User\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 use Silex\Application as SilexApplication;
 use Silex\Provider\ServiceControllerServiceProvider;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -13,7 +13,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 /**
  * The service application class.
  *
- * @package Auth
+ * @package User
  * @author  Anton Pelykh <anton.pelykh.dev@gmail.com>
  */
 class Application extends SilexApplication
@@ -73,7 +73,7 @@ class Application extends SilexApplication
      */
     public static function getName(): string
     {
-        return 'Auth';
+        return 'User';
     }
 
     /**

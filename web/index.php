@@ -3,7 +3,7 @@
  * The service bootstrap file.
  */
 
-use Auth\Application;
+use User\Application;
 
 require_once __DIR__.'/../vendor/autoload.php';
 

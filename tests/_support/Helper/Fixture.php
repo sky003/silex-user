@@ -2,9 +2,9 @@
 
 declare(strict_types = 1);
 
-namespace Auth\Tests\Helper;
+namespace User\Tests\Helper;
 
-use Auth\Component\Doctrine\Common\DataFixtures\ContainerAwareInterface;
+use User\Component\Doctrine\Common\DataFixtures\ContainerAwareInterface;
 use Codeception\Module;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
@@ -22,7 +22,7 @@ use Pimple\Psr11\Container;
 /**
  * Helper to manage the database fixtures.
  *
- * @package Auth\Tests\Helper
+ * @package User\Tests\Helper
  * @author Anton Pelykh <anton.pelykh.dev@gmail.com>
  */
 class Fixture extends Module
@@ -32,7 +32,7 @@ class Fixture extends Module
      *
      * @param \Doctrine\Common\DataFixtures\SharedFixtureInterface $fixtureLoader
      *
-     * @return \Doctrine\Common\DataFixtures\SharedFixtureInterface|\Auth\Component\Doctrine\Common\DataFixtures\AbstractFixture
+     * @return \Doctrine\Common\DataFixtures\SharedFixtureInterface|\User\Component\Doctrine\Common\DataFixtures\AbstractFixture
      */
     public function loadFixture(SharedFixtureInterface $fixtureLoader): SharedFixtureInterface
     {
