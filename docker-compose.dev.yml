@@ -7,7 +7,7 @@ services:
     - graylog
   graylog:
     image: graylog/graylog:2.3
-    container_name: auth-graylog
+    container_name: user-graylog
     ports:
     - '9000:9000'
     env_file:
@@ -17,9 +17,9 @@ services:
     - elasticsearch
   mongo:
     image: mongo:3
-    container_name: auth-mongo
+    container_name: user-mongo
   elasticsearch:
     image: elasticsearch:5
-    container_name: auth-elasticsearch
+    container_name: user-elasticsearch
     env_file:
     - ./env/docker/elasticsearch/env

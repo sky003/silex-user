@@ -1,10 +1,10 @@
 version: '3.2'
 services:
-  auth:
+  user:
     build:
       context: ./env/docker/nginx
-    image: auth/nginx:v1
-    container_name: auth-nginx
+    image: user/nginx:v1
+    container_name: user-nginx
     ports:
     - '8080:80'
     env_file:
@@ -16,8 +16,8 @@ services:
   php-fpm:
     build:
       context: ./env/docker/php-fpm
-    image: auth/php-fpm:v1
-    container_name: auth-php-fpm
+    image: user/php-fpm:v1
+    container_name: user-php-fpm
     env_file:
     - ./env/docker/php-fpm/env
     - ./env/docker/nginx/env
@@ -30,13 +30,13 @@ services:
     - redis
   postgres:
     image: postgres:9.6
-    container_name: auth-postgres
+    container_name: user-postgres
     ports:
     - '5432:5432'
     env_file:
     - ./env/docker/postgres/env
   redis:
     image: redis:3.2
-    container_name: auth-redis
+    container_name: user-redis
     env_file:
     - ./env/docker/redis/env
