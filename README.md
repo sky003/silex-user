@@ -1,4 +1,4 @@
-# Silex authentication service
+# Silex user service
 
 [![Build Status](https://travis-ci.org/sky003/silex-auth-service.svg?branch=master)](https://travis-ci.org/sky003/silex-auth-service)
 
@@ -7,9 +7,9 @@ Example of REST service built with Silex.
 You can also use this as **boilerplate for your Silex application**. You can find here:
 * Development environment built with Docker
 * Configured application bootstrap
-* Authenticator to support email-password auth
 * Database migrations
 * Unit and integration tests with the fixtures loading support
+* ...
 
 ## Running
 
