@@ -14,9 +14,12 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use User\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
+use User\Component\Security\Core\Authorization\Voter\CrudVoter;
 use User\Service\CrudServiceInterface;
 
 /**
@@ -47,6 +50,10 @@ abstract class AbstractCrudController
      */
     private $validator;
     /**
+     * @var AuthorizationCheckerInterface
+     */
+    private $authorizationChecker;
+    /**
      * @var CrudServiceInterface
      */
     private $service;
@@ -58,20 +65,23 @@ abstract class AbstractCrudController
     /**
      * AbstractCrudController constructor.
      *
-     * @param SerializerInterface  $serializer
-     * @param ValidatorInterface   $validator
-     * @param CrudServiceInterface $service
-     * @param LoggerInterface      $logger
+     * @param SerializerInterface           $serializer
+     * @param ValidatorInterface            $validator
+     * @param AuthorizationCheckerInterface $authorizationChecker
+     * @param CrudServiceInterface          $service
+     * @param LoggerInterface               $logger
      */
     public function __construct(
         SerializerInterface $serializer,
         ValidatorInterface $validator,
+        AuthorizationCheckerInterface $authorizationChecker,
         CrudServiceInterface $service,
         LoggerInterface $logger
     ){
         $this->service = $service;
         $this->serializer = $serializer;
         $this->validator = $validator;
+        $this->authorizationChecker = $authorizationChecker;
         $this->logger = $logger;
     }
 
@@ -97,6 +107,8 @@ abstract class AbstractCrudController
         if (count($errors) > 0) {
             throw new UnprocessableEntityHttpException($errors);
         }
+
+        $this->checkAccess([CrudVoter::CREATE]);
 
         $dto = $this->service->create($dto);
 
@@ -133,6 +145,8 @@ abstract class AbstractCrudController
             throw new NotFoundHttpException();
         }
 
+        $this->checkAccess([CrudVoter::GET], $dto);
+
         return new JsonResponse(
             $this->serializer->serialize(
                 $dto,
@@ -157,6 +171,8 @@ abstract class AbstractCrudController
         $this->action = self::ACTION_GET_LIST;
 
         $this->beforeAction($this->action);
+
+        $this->checkAccess([CrudVoter::GET_LIST]);
 
         $offset = $request->attributes->get('_offset');
         $limit = $request->attributes->get('_limit');
@@ -220,6 +236,8 @@ abstract class AbstractCrudController
             throw new UnprocessableEntityHttpException($errors);
         }
 
+        $this->checkAccess([CrudVoter::UPDATE], $dto);
+
         $dto = $this->service->update($dto);
 
         return new JsonResponse(
@@ -251,6 +269,8 @@ abstract class AbstractCrudController
             throw new NotFoundHttpException();
         }
 
+        $this->checkAccess([CrudVoter::DELETE], $dto);
+
         $this->service->delete($dto);
 
         return new JsonResponse(
@@ -265,6 +285,18 @@ abstract class AbstractCrudController
      * @param string $action
      */
     protected function beforeAction(string $action): void
+    {
+    }
+
+    /**
+     * @see AuthorizationCheckerInterface::isGranted()
+     *
+     * @param array       $attributes
+     * @param object|null $object
+     *
+     * @throws AccessDeniedHttpException
+     */
+    protected function checkAccess(array $attributes, object $object = null): void
     {
     }
 
