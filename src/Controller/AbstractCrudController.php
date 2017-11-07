@@ -16,7 +16,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use User\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 use User\Component\Security\Core\Authorization\Voter\CrudVoter;
@@ -50,10 +49,6 @@ abstract class AbstractCrudController
      */
     private $validator;
     /**
-     * @var AuthorizationCheckerInterface
-     */
-    private $authorizationChecker;
-    /**
      * @var CrudServiceInterface
      */
     private $service;
@@ -67,21 +62,18 @@ abstract class AbstractCrudController
      *
      * @param SerializerInterface           $serializer
      * @param ValidatorInterface            $validator
-     * @param AuthorizationCheckerInterface $authorizationChecker
      * @param CrudServiceInterface          $service
      * @param LoggerInterface               $logger
      */
     public function __construct(
         SerializerInterface $serializer,
         ValidatorInterface $validator,
-        AuthorizationCheckerInterface $authorizationChecker,
         CrudServiceInterface $service,
         LoggerInterface $logger
     ){
         $this->service = $service;
         $this->serializer = $serializer;
         $this->validator = $validator;
-        $this->authorizationChecker = $authorizationChecker;
         $this->logger = $logger;
     }
 
