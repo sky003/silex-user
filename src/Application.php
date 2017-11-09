@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace User;
 
+use Symfony\Component\HttpFoundation\Request;
 use User\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 use Silex\Application as SilexApplication;
 use Silex\Provider\ServiceControllerServiceProvider;
@@ -33,6 +34,20 @@ class Application extends SilexApplication
         parent::__construct($values);
 
         $this->register(new ServiceControllerServiceProvider());
+
+        // Prepare the request attributes you need.
+        $this->before(function (Request $request) {
+            if ($request->isMethod('GET')) {
+                $request->attributes->set(
+                    '_limit',
+                    (int) $request->query->get('limit', 50)
+                );
+                $request->attributes->set(
+                    '_offset',
+                    (int) $request->query->get('offset', 0)
+                );
+            }
+        });
 
         // Handle the validation errors.
         $this->error(function (UnprocessableEntityHttpException $e) {
