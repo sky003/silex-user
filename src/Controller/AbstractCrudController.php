@@ -60,17 +60,17 @@ abstract class AbstractCrudController
     /**
      * AbstractCrudController constructor.
      *
-     * @param SerializerInterface           $serializer
-     * @param ValidatorInterface            $validator
-     * @param CrudServiceInterface          $service
-     * @param LoggerInterface               $logger
+     * @param SerializerInterface  $serializer
+     * @param ValidatorInterface   $validator
+     * @param CrudServiceInterface $service
+     * @param LoggerInterface      $logger
      */
     public function __construct(
         SerializerInterface $serializer,
         ValidatorInterface $validator,
         CrudServiceInterface $service,
         LoggerInterface $logger
-    ){
+    ) {
         $this->service = $service;
         $this->serializer = $serializer;
         $this->validator = $validator;
@@ -95,7 +95,7 @@ abstract class AbstractCrudController
             $this->getDeserializationContext()
         );
 
-        $errors = $this->validator->validate($dto);
+        $errors = $this->validator->validate($dto, null, $this->getValidationGroups());
         if (count($errors) > 0) {
             throw new UnprocessableEntityHttpException($errors);
         }
@@ -208,14 +208,6 @@ abstract class AbstractCrudController
      */
     public function update(Request $request): JsonResponse
     {
-        $context = $this->getDeserializationContext();
-        // Pass the resource identifier to deserialization context.
-        // Useful if you need construct the Doctrine object.
-        $context->setAttribute(
-            'id',
-            $request->attributes->get('id')
-        );
-
         $dto = $this->serializer->deserialize(
             $request->getContent(),
             $this->getDtoType(),
@@ -223,7 +215,11 @@ abstract class AbstractCrudController
             $this->getDeserializationContext()
         );
 
-        $errors = $this->validator->validate($dto);
+        $dto->setId(
+            $request->attributes->get('id')
+        );
+
+        $errors = $this->validator->validate($dto, null, $this->getValidationGroups());
         if (count($errors) > 0) {
             throw new UnprocessableEntityHttpException($errors);
         }
@@ -253,13 +249,17 @@ abstract class AbstractCrudController
      */
     public function delete(Request $request): JsonResponse
     {
-        $dto = $this->service->get(
-            $request->attributes->get('id')
+        // Create an empty object.
+        $dto = $this->serializer->deserialize(
+            '{}',
+            $this->getDtoType(),
+            'json',
+            $this->getDeserializationContext()
         );
 
-        if (null === $dto) {
-            throw new NotFoundHttpException();
-        }
+        $dto->setId(
+            $request->attributes->get('id')
+        );
 
         $this->checkAccess([CrudVoter::DELETE], $dto);
 
@@ -305,6 +305,14 @@ abstract class AbstractCrudController
     protected function getDeserializationContext(): DeserializationContext
     {
         return new DeserializationContext();
+    }
+
+    /**
+     * @return array
+     */
+    protected function getValidationGroups(): array
+    {
+        return [];
     }
 
     /**

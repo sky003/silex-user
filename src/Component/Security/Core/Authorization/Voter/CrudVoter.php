@@ -29,6 +29,11 @@ abstract class CrudVoter extends Voter
             return false;
         }
 
+        // Subject is empty on `create` or `getList` attribute.
+        if (in_array($attribute, [self::CREATE, self::GET_LIST])) {
+            return true;
+        }
+
         return $this->supportsSubject($subject);
     }
 
@@ -39,5 +44,5 @@ abstract class CrudVoter extends Voter
      *
      * @return bool
      */
-    abstract protected function supportsSubject(object $subject): bool;
+    abstract protected function supportsSubject($subject): bool;
 }
