@@ -9,14 +9,12 @@ class AccountCest
 {
     public function testCreate(FunctionalTester $I)
     {
-        $data = [
+        //$data = [];
 
-        ];
-
-        $I->haveHttpHeader('Content-Type', 'application/json');
-        $I->sendPOST(
-            $I->grabService('url_generator')->generate('accounts/create'),
-            $data
-        );
+        //$I->haveHttpHeader('Content-Type', 'application/json');
+        //$I->sendPOST(
+        //    $I->grabService('url_generator')->generate('accounts/create'),
+        //    $data
+        //);
     }
 }
