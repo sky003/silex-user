@@ -30,12 +30,6 @@ class Token
      */
     private $id;
     /**
-     * @var integer
-     *
-     * @ORM\Column(type="integer", name="user_id")
-     */
-    private $userId;
-    /**
      * @var string
      *
      * @ORM\Column(type="string", name="access_token", nullable=true)
@@ -100,26 +94,6 @@ class Token
     public function setId(int $id): Token
     {
         $this->id = $id;
-
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getUserId(): int
-    {
-        return $this->userId;
-    }
-
-    /**
-     * @param int $userId
-     *
-     * @return self
-     */
-    public function setUserId(int $userId): Token
-    {
-        $this->userId = $userId;
 
         return $this;
     }

@@ -2,70 +2,56 @@
 
 declare(strict_types = 1);
 
-namespace User\Entity\ORM;
+namespace User\Dto\Response;
 
-use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class to represent the account entity.
+ * Account response DTO.
  *
- * @package User\Entity\ORM
- * @author Anton Pelykh <anton.pelykh.dev@gmail.com>
+ * @package User\Dto\Response
+ * @author  Anton Pelykh <anton.pelykh.dev@gmail.com>
  *
- * @ORM\Entity()
- * @ORM\Table(name="account", schema="public")
+ * @Serializer\ExclusionPolicy("all")
  */
-class Account
+class Account implements DtoInterface
 {
-    const STATUS_ENABLED = 1;
-    const STATUS_LOCKED = 2;
-
     /**
-     * @var integer
+     * @var int
      *
-     * @ORM\Id()
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @Serializer\Expose()
+     * @Serializer\ReadOnly()
+     * @Serializer\Type("integer")
      */
     private $id;
     /**
      * @var string
      *
-     * @ORM\Column(type="string")
+     * @Serializer\Expose()
+     * @Serializer\Type("string")
      */
     private $email;
     /**
      * @var string
      *
-     * @ORM\Column(type="string")
-     */
-    private $password;
-    /**
-     * @var integer
-     *
-     * @ORM\Column(type="smallint")
+     * @Serializer\Expose()
+     * @Serializer\Type("string")
      */
     private $status;
     /**
      * @var \DateTime
      *
-     * @ORM\Column(type="datetime", name="created_at")
+     * @Serializer\Expose()
+     * @Serializer\Type("DateTime")
      */
     private $createdAt;
     /**
      * @var \DateTime
      *
-     * @ORM\Column(type="datetime", name="updated_at", nullable=true)
+     * @Serializer\Expose()
+     * @Serializer\Type("DateTime")
      */
     private $updatedAt;
-
-    /**
-     * @var User
-     *
-     * @ORM\OneToOne(targetEntity="User", inversedBy="account")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     */
-    private $user;
 
     /**
      * @return int
@@ -110,37 +96,17 @@ class Account
     /**
      * @return string
      */
-    public function getPassword(): string
-    {
-        return $this->password;
-    }
-
-    /**
-     * @param string $password
-     *
-     * @return self
-     */
-    public function setPassword(string $password): Account
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getStatus(): int
+    public function getStatus(): string
     {
         return $this->status;
     }
 
     /**
-     * @param int $status
+     * @param string $status
      *
      * @return self
      */
-    public function setStatus(int $status): Account
+    public function setStatus(string $status): Account
     {
         $this->status = $status;
 
@@ -183,26 +149,6 @@ class Account
     public function setUpdatedAt(\DateTime $updatedAt): Account
     {
         $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * @return User
-     */
-    public function getUser(): User
-    {
-        return $this->user;
-    }
-
-    /**
-     * @param User $user
-     *
-     * @return self
-     */
-    public function setUser(User $user): Account
-    {
-        $this->user = $user;
 
         return $this;
     }
