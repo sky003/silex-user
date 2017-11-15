@@ -7,12 +7,12 @@ use User\Tests\AcceptanceTester;
 
 class IndexCest
 {
-    public function testIndex(AcceptanceTester $tester)
+    public function testIndex(AcceptanceTester $I)
     {
-        $tester->wantTo('make sure that web server works');
-        $tester->sendGET('/');
+        $I->wantTo('make sure that web server works');
+        $I->sendGET('/');
 
-        $tester->expectTo('see correct response');
-        $tester->seeResponseCodeIs(200);
+        $I->expectTo('see correct response');
+        $I->seeResponseCodeIs(200);
     }
 }
