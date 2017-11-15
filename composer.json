@@ -3,12 +3,16 @@
     "type": "project",
     "description": "User service built with Silex",
     "require": {
+        "php": "^7.1",
+
         "silex/silex": "^2.2",
 
         "monolog/monolog": "^1.23",
 
         "doctrine/dbal": "^2.6",
         "doctrine/migrations": "^1.5",
+        "doctrine/orm": "^2.5",
+        "dflydev/doctrine-orm-service-provider": "^2.0",
 
         "jms/serializer": "^1.9",
         "willdurand/hateoas": "^2.11",
@@ -22,7 +26,6 @@
 
         "graylog2/gelf-php": "^1.5",
 
-        "doctrine/orm": "^2.5",
         "doctrine/data-fixtures": "^1.2",
         "fzaninotto/faker": "^1.7",
 
