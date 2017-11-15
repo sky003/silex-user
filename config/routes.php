@@ -5,6 +5,8 @@
  * @var \User\Application $app
  */
 
+use User\Provider\AccountControllerProvider;
+
 $app['controllers']
     ->assert('id', '\d+')
     ->method('GET|PUT|DELETE')
@@ -15,3 +17,5 @@ $app['controllers']
 $app->get('/', function () {
     return '';
 });
+
+$app->mount('/account', new AccountControllerProvider());

@@ -14,6 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Entity()
  * @ORM\Table(name="account", schema="public")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Account
 {
@@ -62,7 +63,7 @@ class Account
     /**
      * @var User
      *
-     * @ORM\OneToOne(targetEntity="User", inversedBy="account")
+     * @ORM\OneToOne(targetEntity="User", inversedBy="account", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
@@ -205,5 +206,21 @@ class Account
         $this->user = $user;
 
         return $this;
+    }
+
+    /**
+     * @ORM\PrePersist()
+     */
+    public function onPrePersist()
+    {
+        $this->createdAt = new \DateTime('now');
+    }
+
+    /**
+     * @ORM\PreUpdate()
+     */
+    public function onPreUpdate()
+    {
+        $this->updatedAt = new \DateTime('now');
     }
 }
