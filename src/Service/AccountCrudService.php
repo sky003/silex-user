@@ -88,7 +88,7 @@ class AccountCrudService implements CrudServiceInterface
      *
      * @return Response\DtoInterface
      */
-    public function get(int $id): Response\DtoInterface
+    public function get(int $id): ?Response\DtoInterface
     {
         /**
          * @var Account $account
@@ -176,7 +176,14 @@ class AccountCrudService implements CrudServiceInterface
          */
         $account = $this->entityManager->find(Account::class, $requestDto->getId());
 
-        // TODO: Exception if empty.
+        if (null === $account) {
+            throw new \UnexpectedValueException(
+                sprintf('Account with id #%s could not be found.', $requestDto->getId())
+            );
+        }
+
+        $this->entityManager->remove($account);
+        $this->entityManager->flush();
     }
 
     /**

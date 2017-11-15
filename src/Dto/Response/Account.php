@@ -136,7 +136,7 @@ class Account implements DtoInterface
     /**
      * @return \DateTime
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
@@ -146,7 +146,7 @@ class Account implements DtoInterface
      *
      * @return self
      */
-    public function setUpdatedAt(\DateTime $updatedAt): Account
+    public function setUpdatedAt(?\DateTime $updatedAt): Account
     {
         $this->updatedAt = $updatedAt;
 
